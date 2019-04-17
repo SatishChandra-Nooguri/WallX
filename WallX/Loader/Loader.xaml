@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="WallX.Loader.Loader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="150" Width="150" >
+   
+    <UserControl.Resources>
+        
+        <Storyboard x:Key="sb_logo_animation" RepeatBehavior="1">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="M_copy_1">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="M_copy_2">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="M_copy_5">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="M_copy_4">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </UserControl.Resources>
+    
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource sb_logo_animation}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
+    <Grid Height="150" Width="150">
+        
+        <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+        
+            <Ellipse x:Name="Ellipse_1" Stroke="White" StrokeThickness="2" Height="150" Canvas.Left="0" Fill="#FF313131" Canvas.Top="0" Width="150"/>
+            
+            <Path x:Name="M_copy_5" Data="F1M15.812,1.042C15.812,1.042,33.209,1.042,37.558,1.042L37.854,1.042C37.854,1.042,37.943,1.042,38.11,1.042L38.279,1.042 38.534,1.042 38.833,1.042C43.194,1.042 60.638,1.042 60.638,1.042 64.955,1.042 67.114,3.583 67.114,8.665 67.114,8.665 63.982,46.194 63.982,46.194 63.982,46.194 56.987,46.073 56.987,46.073 56.987,46.073 51.883,12.483 51.883,12.483 51.883,12.483 37.854,12.483 37.854,12.483L37.854,12.46 36.348,12.46C32.413,12.46 24.543,12.46 24.543,12.46 24.543,12.46 11.316,61.68 11.316,61.68 11.316,61.68 60.132,57.097 60.132,57.097 60.132,57.097 60.132,57.384 60.132,57.384 60.132,57.384 8.087,73.098 8.087,73.098 3.781,73.098 1.628,70.562 1.628,65.491 1.628,65.491 9.353,8.649 9.353,8.649 9.353,3.578 11.506,1.042 15.812,1.042z" Fill="#FFAB5B5D" Height="75" Canvas.Left="65" Canvas.Top="85" Width="69" Margin="26.5,47,54.5,28"/>
+            
+            <Path x:Name="M_copy_4" Data="F1M61.425,1.504C65.792,1.504 67.976,4.045 67.976,9.126 67.976,9.126 60.141,67.915 60.141,67.915 60.141,72.997 57.957,75.538 53.59,75.538 53.59,75.538 35.944,75.538 31.532,75.538L31.23,75.538 30.972,75.538C31.217,75.538,30.97,75.538,30.801,75.538L30.542,75.538C28.447,75.538 8.245,75.538 8.245,75.538 3.89,75.538 1.712,73.002 1.712,67.931 1.712,67.931 6.589,30.501 6.589,30.501 6.589,30.501 13.669,30.614 13.669,30.614 13.669,30.614 17.077,64.12 17.077,64.12 17.077,64.12 25.038,64.12 29.019,64.12L30.542,64.12 30.542,64.097C30.542,64.097 44.733,64.097 44.733,64.097 44.733,64.097 58.15,12.944 58.15,12.944 58.15,12.944 8.235,19.377 8.235,19.377 8.235,19.377 8.235,19.067 8.235,19.067 8.235,19.067 61.425,1.504 61.425,1.504z" Fill="#FFEBB145" Height="77" Canvas.Left="92" Canvas.Top="67" Width="69" Margin="54,28.5,27,44.5"/>
+            
+            <Path x:Name="M_copy_1" Data="F1M15.812,1.042C15.812,1.042,33.209,1.042,37.558,1.042L37.854,1.042C37.854,1.042,37.943,1.042,38.11,1.042L38.279,1.042 38.534,1.042 38.833,1.042C43.194,1.042 60.638,1.042 60.638,1.042 64.955,1.042 67.114,3.583 67.114,8.665 67.114,8.665 63.982,46.194 63.982,46.194 63.982,46.194 56.987,46.073 56.987,46.073 56.987,46.073 51.883,12.483 51.883,12.483 51.883,12.483 37.854,12.483 37.854,12.483L37.854,12.46 36.348,12.46C32.413,12.46 24.543,12.46 24.543,12.46 24.543,12.46 11.316,61.68 11.316,61.68 11.316,61.68 60.132,57.097 60.132,57.097 60.132,57.097 60.132,57.384 60.132,57.384 60.132,57.384 8.087,73.098 8.087,73.098 3.781,73.098 1.628,70.562 1.628,65.491 1.628,65.491 9.353,8.649 9.353,8.649 9.353,3.578 11.506,1.042 15.812,1.042z" Fill="#FFAB5B5D" Margin="53.65,29,27.35,48.406" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            
+            <Path x:Name="M_copy_2" Data="F1M61.425,1.504C65.792,1.504 67.976,4.045 67.976,9.126 67.976,9.126 60.141,67.915 60.141,67.915 60.141,72.997 57.957,75.538 53.59,75.538 53.59,75.538 35.944,75.538 31.532,75.538L31.23,75.538 30.972,75.538C31.217,75.538,30.97,75.538,30.801,75.538L30.542,75.538C28.447,75.538 8.245,75.538 8.245,75.538 3.89,75.538 1.712,73.002 1.712,67.931 1.712,67.931 6.589,30.501 6.589,30.501 6.589,30.501 13.669,30.614 13.669,30.614 13.669,30.614 17.077,64.12 17.077,64.12 17.077,64.12 25.038,64.12 29.019,64.12L30.542,64.12 30.542,64.097C30.542,64.097 44.733,64.097 44.733,64.097 44.733,64.097 58.15,12.944 58.15,12.944 58.15,12.944 8.235,19.377 8.235,19.377 8.235,19.377 8.235,19.067 8.235,19.067 8.235,19.067 61.425,1.504 61.425,1.504z" Fill="#FFEBB145" Margin="29,44.971,52,30.5" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            
+        </Grid>
+        
+    </Grid>
+    
+</UserControl>

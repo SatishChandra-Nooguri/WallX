@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WallX.Views.ScreenRecordingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WallX.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             mc:Ignorable="d" Height="61" Width="312">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <ei:CallMethodAction TargetObject="{Binding}" MethodName="root_MouseLeftButtonDown" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="MouseMove">
+            <ei:CallMethodAction TargetObject="{Binding}" MethodName="root_MouseMove" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="MouseUp">
+            <ei:CallMethodAction TargetObject="{Binding}" MethodName="root_MouseLeftButtonUp" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Canvas Height="61" Width="312" Background="#FFEBEDEF" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Canvas x:Name="canv_stop_recording" Background="Transparent" Height="61" Margin="0,0,9,12" VerticalAlignment="Bottom" Width="312" Visibility="Visible">
+            <TextBlock x:Name="text_recording_stop" Visibility="Hidden" Foreground="#FF000000" FontWeight="Bold" FontSize="27.778" FontFamily="Roboto-Regular" LineStackingStrategy="BlockLineHeight" Canvas.Left="32.997" LineHeight="27.778" Opacity="0.8" TextAlignment="Left" TextWrapping="Wrap" Text="Stop" Canvas.Top="10.333"/>
+            <TextBlock x:Name="text_recording_pause" Visibility="Hidden" Foreground="#FF000000" FontWeight="Bold" FontSize="27.778" FontFamily="Roboto-Regular" LineStackingStrategy="BlockLineHeight" Canvas.Left="23.659" LineHeight="27.778" Opacity="0.8" TextAlignment="Left" TextWrapping="Wrap" Text="Pause" Canvas.Top="10.333"/>
+            <Path x:Name="Shape_42" Data="F1M17.5,14.953C16.095,14.953 14.953,16.096 14.953,17.5 14.953,18.905 16.095,20.047 17.5,20.047 18.904,20.047 20.047,18.905 20.047,17.5 20.047,16.096 18.904,14.953 17.5,14.953z M17.5,13.043C19.958,13.043 21.957,15.042 21.957,17.5 21.957,19.958 19.958,21.957 17.5,21.957 15.042,21.957 13.043,19.958 13.043,17.5 13.043,15.042 15.042,13.043 17.5,13.043z M17.5,11.451C14.165,11.451 11.451,14.165 11.451,17.5 11.451,20.835 14.165,23.549 17.5,23.549 20.835,23.549 23.549,20.835 23.549,17.5 23.549,14.165 20.835,11.451 17.5,11.451z M17.5,1.9C26.102,1.9 33.1,8.898 33.1,17.5 33.1,26.102 26.102,33.1 17.5,33.1 8.898,33.1 1.9,26.102 1.9,17.5 1.9,8.898 8.898,1.9 17.5,1.9z" Fill="#FF313131" Height="35" Opacity="0.8" Width="35" Canvas.Left="19" Canvas.Top="14"/>
+            <TextBlock x:Name="REC" Foreground="#FF313131" FontWeight="Bold" FontSize="20.833" FontFamily="Roboto" Opacity="0.8" TextAlignment="Left" TextWrapping="Wrap" Text="REC" Canvas.Left="62.5" Canvas.Top="17.667"/>
+            <TextBlock x:Name="clocktxtblock" Foreground="#FF313131" FontSize="20.833" FontFamily="Digital-7" Opacity="0.8" TextAlignment="Left" TextWrapping="Wrap" Text="{Binding Clocktxtblock}" Canvas.Left="122" Canvas.Top="17.667"/>
+            <Canvas x:Name="canv_recording_stop" Height="35" Width="38.25" Background="Transparent" Canvas.Left="220.25" Canvas.Top="14">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="canv_recording_stop_MouseDown" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Path x:Name="Shape_43" Data="F1M3.414,1.184C3.414,1.184 22.299,1.184 22.299,1.184 23.247,1.184 24.016,1.953 24.016,2.901 24.016,2.901 24.016,21.786 24.016,21.786 24.016,22.735 23.247,23.503 22.299,23.503 22.299,23.503 3.414,23.503 3.414,23.503 2.465,23.503 1.697,22.735 1.697,21.786 1.697,21.786 1.697,2.901 1.697,2.901 1.697,1.953 2.465,1.184 3.414,1.184z" Fill="#FFC3372F" Height="25" Opacity="0.8" Width="26" Canvas.Left="5.25" Canvas.Top="4"/>
+            </Canvas>
+            <Canvas x:Name="canv_recording_pause" Height="38.667" Width="39" Background="Transparent" Canvas.Left="265" Canvas.Top="10.333">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="canv_recording_pause_MouseDown" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <Path x:Name="pause_recording" Visibility="{Binding Pause_recording_visibiity}" Data="F1M14.094,1.05C14.094,1.05 18.185,1.05 18.185,1.05 19.088,1.05 19.821,1.769 19.821,2.656 19.821,2.656 19.821,20.323 19.821,20.323 19.821,21.21 19.088,21.929 18.185,21.929 18.185,21.929 14.094,21.929 14.094,21.929 13.19,21.929 12.457,21.21 12.457,20.323 12.457,20.323 12.457,2.656 12.457,2.656 12.457,1.769 13.19,1.05 14.094,1.05z M3.457,1.05C3.457,1.05 7.547,1.05 7.547,1.05 8.452,1.05 9.184,1.769 9.184,2.656 9.184,2.656 9.184,20.323 9.184,20.323 9.184,21.21 8.452,21.929 7.547,21.929 7.547,21.929 3.457,21.929 3.457,21.929 2.553,21.929 1.82,21.21 1.82,20.323 1.82,20.323 1.82,2.656 1.82,2.656 1.82,1.769 2.553,1.05 3.457,1.05z" Fill="#FF313131" Height="23" Opacity="0.8" Width="21" Canvas.Top="8.5" Canvas.Left="10"/>
+                <Path x:Name="start_recording" Visibility="{Binding Start_recording_visibiity}" Data="F1M2.695,1.24C3.106,1.24 3.651,1.197 4.09,1.45 4.09,1.45 18.927,10.49 18.927,10.49 20.145,11.191 19.935,12.018 19.935,12.018 19.935,12.018 20.145,12.845 18.927,13.546 18.927,13.546 4.09,22.586 4.09,22.586 3.651,22.839 3.106,22.796 2.695,22.796 1.05,22.796 1.057,21.52 1.057,21.257 1.057,21.257 1.057,2.779 1.057,2.779 1.057,2.468 1.05,1.24 2.695,1.24z" Fill="#FF313131" Height="24" Opacity="0.8" Width="22" Canvas.Top="7.5" Canvas.Left="10"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+</UserControl>

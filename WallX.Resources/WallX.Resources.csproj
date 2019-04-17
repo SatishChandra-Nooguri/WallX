@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66A144BC-A567-48F8-A7F7-587B35A03AC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WallX.Resources</RootNamespace>
+    <AssemblyName>WallX.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\+.png" />
+    <Resource Include="Resources\1.jpg" />
+    <Resource Include="Resources\1471015809_Play.png" />
+    <Resource Include="Resources\Add to Image Library.png" />
+    <Resource Include="Resources\base copy 2.png" />
+    <Resource Include="Resources\base copy 3 Rect.png" />
+    <Resource Include="Resources\base copy 3.png" />
+    <Resource Include="Resources\base copy 4.png" />
+    <Resource Include="Resources\base copy 5.png" />
+    <Resource Include="Resources\base copy.png" />
+    <Resource Include="Resources\bg-calendar.jpg" />
+    <Resource Include="Resources\blackbg.png" />
+    <Resource Include="Resources\bluebg.png" />
+    <Resource Include="Resources\Button frame.png" />
+    <Resource Include="Resources\Button groove.png" />
+    <Resource Include="Resources\Cancel - Copy.png" />
+    <Resource Include="Resources\carousel_divider.png" />
+    <Resource Include="Resources\checked2.png" />
+    <Resource Include="Resources\Circle.png" />
+    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\closemail.png" />
+    <Resource Include="Resources\Dateicon.png" />
+    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\divider1.png" />
+    <Resource Include="Resources\dontsaveproject.png" />
+    <Resource Include="Resources\Ellipse 1 copy.png" />
+    <Resource Include="Resources\Ellipse 1.png" />
+    <Resource Include="Resources\Ellipse 2.png" />
+    <Resource Include="Resources\Ellipse 38.png" />
+    <Resource Include="Resources\Ellipse 5 copy 3.png" />
+    <Resource Include="Resources\Ellipse 5 copy 4.png" />
+    <Resource Include="Resources\Ellipse 5 copy 6.png" />
+    <Resource Include="Resources\Ellipse_circle.png" />
+    <Resource Include="Resources\Finger Pointer Dot.png" />
+    <Resource Include="Resources\form-container.png" />
+    <Resource Include="Resources\greenbg.png" />
+    <Resource Include="Resources\h-logo.png" />
+    <Resource Include="Resources\icon-edit.png" />
+    <Resource Include="Resources\icon_pdf.png" />
+    <Resource Include="Resources\img_zoomus.png" />
+    <Resource Include="Resources\Layer 6.png" />
+    <Resource Include="Resources\Layer 7.png" />
+    <Resource Include="Resources\Layer 8.png" />
+    <Resource Include="Resources\Layer 9.png" />
+    <Resource Include="Resources\light1.png" />
+    <Resource Include="Resources\light2.png" />
+    <Resource Include="Resources\light3.png" />
+    <Resource Include="Resources\light4.png" />
+    <Resource Include="Resources\light5.png" />
+    <Resource Include="Resources\light6.png" />
+    <Resource Include="Resources\light7.png" />
+    <Resource Include="Resources\lightbluebg.png" />
+    <Resource Include="Resources\Logo.png" />
+    <Resource Include="Resources\magnifyingGlass.png" />
+    <Resource Include="Resources\main-container copy.png" />
+    <Resource Include="Resources\Menu Settings bg.png" />
+    <Resource Include="Resources\minutes of meeting.png" />
+    <Resource Include="Resources\nextgen-logo.png" />
+    <Resource Include="Resources\Off.png" />
+    <Resource Include="Resources\On Off BG.png" />
+    <Resource Include="Resources\On.png" />
+    <Resource Include="Resources\pdf agenda.png" />
+    <Resource Include="Resources\pdf contents.png" />
+    <Resource Include="Resources\pdf decisions.png" />
+    <Resource Include="Resources\pdf footer logo.png" />
+    <Resource Include="Resources\pdf participants bg.png" />
+    <Resource Include="Resources\pdf participants.png" />
+    <Resource Include="Resources\pdflastpage.png" />
+    <Resource Include="Resources\pdfmainpage.png" />
+    <Resource Include="Resources\Pencil.png" />
+    <Resource Include="Resources\Pic Scenery.png" />
+    <Resource Include="Resources\play.png" />
+    <Resource Include="Resources\Play_Circlepng.png" />
+    <Resource Include="Resources\Plus.png" />
+    <Resource Include="Resources\pureblackbg.png" />
+    <Resource Include="Resources\Rectangle 1 copy 2.png" />
+    <Resource Include="Resources\Rectangle 1.png" />
+    <Resource Include="Resources\Rectangle 2 copy.png" />
+    <Resource Include="Resources\Rectangle 2.png" />
+    <Resource Include="Resources\Rectangle 7 copy.png" />
+    <Resource Include="Resources\Rectangle 8 copy 8.png" />
+    <Resource Include="Resources\refreshicon.png" />
+    <Resource Include="Resources\Rounded green.png" />
+    <Resource Include="Resources\Rounded Rectangle 1 copy 2.png" />
+    <Resource Include="Resources\Rounded Rectangle 1 copy.png" />
+    <Resource Include="Resources\Rounded Rectangle 1.png" />
+    <Resource Include="Resources\Rounded Rectangle 10.png" />
+    <Resource Include="Resources\Rounded Rectangle 116.png" />
+    <Resource Include="Resources\Rounded Rectangle 2.png" />
+    <Resource Include="Resources\Rounded Rectangle 3.png" />
+    <Resource Include="Resources\Rounded Rectangle.png" />
+    <Resource Include="Resources\Search Icon Pic.png" />
+    <Resource Include="Resources\sendIcon.png" />
+    <Resource Include="Resources\shadow Rect.png" />
+    <Resource Include="Resources\shadow.png" />
+    <Resource Include="Resources\Shape 11.png" />
+    <Resource Include="Resources\Shape 2 copy.png" />
+    <Resource Include="Resources\Shape 3.png" />
+    <Resource Include="Resources\Shape 4.png" />
+    <Resource Include="Resources\Shape Off.png" />
+    <Resource Include="Resources\Shape On.png" />
+    <Resource Include="Resources\shareonline.png" />
+    <Resource Include="Resources\switchbg.png" />
+    <Resource Include="Resources\tick.png" />
+    <Resource Include="Resources\whitebg.png" />
+    <Resource Include="Resources\WindowShadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="File_61_9a0ad75f-aeef-411e-87df-6a035ac8a216.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="File_62_347980e7-686a-4073-9bfe-356845fdde18.xls" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

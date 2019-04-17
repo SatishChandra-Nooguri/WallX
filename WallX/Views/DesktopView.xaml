@@ -1,0 +1,794 @@
+﻿<Window x:Class="WallX.Views.DesktopView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:Gestures="clr-namespace:NextGen.Controls.Gestures;assembly=NextGen.Controls.Gestures"
+        mc:Ignorable="d" Title="DesktopView" WindowStyle="None"
+        WindowState="Maximized" Background="Transparent" AllowsTransparency="True" Icon="pack://application:,,,/Logo.ico">
+    <Window.Resources>
+
+        <Storyboard x:Key="sb_ResultMessageBoxAnimation">
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="canv_Result_MessageBox">
+
+                <EasingDoubleKeyFrame KeyTime="0" Value="-190"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="350"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="350"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:2.8" Value="350">
+
+                    <EasingDoubleKeyFrame.EasingFunction>
+
+                        <BackEase EasingMode="EaseOut"/>
+
+                    </EasingDoubleKeyFrame.EasingFunction>
+
+                </EasingDoubleKeyFrame>
+
+            </DoubleAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+        <Storyboard x:Key="sb_ResultMessageBoxCloseAnimation">
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="canv_Result_MessageBox">
+
+                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+
+                    <EasingDoubleKeyFrame.EasingFunction>
+
+                        <BackEase EasingMode="EaseOut"/>
+
+                    </EasingDoubleKeyFrame.EasingFunction>
+
+                </EasingDoubleKeyFrame>
+
+            </DoubleAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+        <Storyboard x:Key="sb_NotificationMessageBoxAnimation">
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="canv_Notification_MessageBox">
+
+                <EasingDoubleKeyFrame KeyTime="0" Value="-100"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:2.8" Value="0">
+
+                    <EasingDoubleKeyFrame.EasingFunction>
+
+                        <BackEase EasingMode="EaseOut"/>
+
+                    </EasingDoubleKeyFrame.EasingFunction>
+
+                </EasingDoubleKeyFrame>
+
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="canv_Notification_MessageBox">
+
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="1"/>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:2.8" Value="0"/>
+
+            </DoubleAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+    </Window.Resources>
+
+    <Viewbox Stretch="Fill">
+
+        <Canvas x:Name="canv_main" Height="1080" Width="1920" Gestures:GestureLib.Tap_4="Tap_4_TapMethod">
+            <i:Interaction.Triggers>
+                <Gestures:GestureLib/>
+            </i:Interaction.Triggers>
+
+            <Canvas x:Name="canv_inkcanvas_desktop" Width="1920" Height="1080" Canvas.Top="0" Canvas.Left="0" Background="Transparent" >
+
+                <InkCanvas x:Name="inkcanvas_desktop" Background="#05FFFFFF" EditingMode="None" Width="1920" Height="1080" Canvas.Top="0" Visibility="Visible">
+                    <InkCanvas.DefaultDrawingAttributes>
+                        <DrawingAttributes StylusTip="Ellipse" Color="Black" Height="5" Width="5" IsHighlighter="False" IgnorePressure="False" FitToCurve="True"/>
+                    </InkCanvas.DefaultDrawingAttributes>
+                </InkCanvas>
+
+            </Canvas>
+
+            <Canvas x:Name="canv_desktop_right_nav" Height="203" Canvas.Left="1862" Background="Transparent" Canvas.Top="457" Width="61" HorizontalAlignment="Right">
+
+                <Path x:Name="Rounded_Rectangle_22" Data="F1M54,133.012C54,133.012 8,133.012 8,133.012 4.134,133.012 1,129.887 1,126.032 1,126.032 1,8.968 1,8.968 1,5.113 4.134,1.987 8,1.987 8,1.987 54,1.987 54,1.987 54,1.987 54,133.012 54,133.012z" Fill="#FF121212" Height="135" Canvas.Left="3" Opacity="0.902" Canvas.Top="0" Width="55"/>
+
+                <Canvas x:Name="canv_red_mode" Background="Transparent" Height="81" Visibility="Hidden" Canvas.Left="0" Canvas.Top="6" Width="61">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="DeskTopToggle_MouseDown"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Image x:Name="Off1" Height="75" Canvas.Left="14" Source="pack://application:,,,/WallX.Resources;component/Resources/Off.png" Canvas.Top="6" Width="32"/>
+
+                    <Image x:Name="Circdleas" Height="60" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/Circle.png" Canvas.Top="-8" Width="61"/>
+
+                    <Image x:Name="Penadciasdl" Height="35" Canvas.Left="20" Source="pack://application:,,,/WallX.Resources;component/Resources/Pencil.png" Canvas.Top="-3" Width="21"/>
+
+                </Canvas>
+
+                <Canvas x:Name="canv_green_mode" Background="Transparent" Height="84"   Canvas.Left="0" Canvas.Top="11" Width="61">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="DeskTopToggle_MouseDown"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Image x:Name="On1" Height="75" Canvas.Left="14" Source="pack://application:,,,/WallX.Resources;component/Resources/On.png" Canvas.Top="0" Width="32"/>
+
+                    <Image x:Name="Circleas" Height="60" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/Circle.png" Canvas.Top="37" Width="61"/>
+
+                    <Image x:Name="Penciasdl" Height="37" Canvas.Left="19" Source="pack://application:,,,/WallX.Resources;component/Resources/Pencil.png" Canvas.Top="41" Width="23"/>
+
+                </Canvas>
+
+                <Canvas Height="38" x:Name="canv_exit_desktop_mode" Background="Transparent" Canvas.Left="4" Canvas.Top="95" Width="53">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="canv_exit_desktop_mode_MouseDown"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Image x:Name="Shape_3as" Height="26" Source="pack://application:,,,/WallX.Resources;component/Resources/Shape 3.png" Width="30" Canvas.Top="4" Canvas.Left="13"/>
+
+                </Canvas>
+
+            </Canvas>
+
+            <Canvas x:Name="canv_addtto_lib_board" Visibility="Collapsed" Background="Transparent" ClipToBounds="True" HorizontalAlignment="Left" Height="189" UseLayoutRounding="False" VerticalAlignment="Top" Width="322" Canvas.Top="380" Canvas.Left="780" >
+
+                <Image x:Name="Rounded_Rectangle_3" Height="170" Canvas.Left="5" Source="pack://application:,,,/WallX.Resources;component/Resources/Rounded Rectangle 3.png" Canvas.Top="9" Width="312"/>
+
+                <Image x:Name="img_add_to_board" Height="112" Canvas.Left="13" Source="pack://application:,,,/WallX.Resources;component/Resources/+.png" Canvas.Top="18" Width="148">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="img_add_to_board_MouseDown"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                </Image>
+
+                <Image x:Name="img_add_to_image_library" Height="112" Canvas.Left="162" Source="pack://application:,,,/WallX.Resources;component/Resources/Add to Image Library.png" Canvas.Top="18" Width="148">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="AddImageToLibrary_MouseDown"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                </Image>
+
+                <Image x:Name="img_cancel" Height="34"  Canvas.Left="13" Source="pack://application:,,,/WallX.Resources;component/Resources/Cancel - Copy.png" Canvas.Top="135" Width="296">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="img_cancel_MouseUp"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                </Image>
+
+            </Canvas>
+
+            <Rectangle Stroke="red" Visibility="Hidden" x:Name="rectangle_screenshot" Width="0" Height="0" StrokeThickness="3" RadiusX="0" RadiusY="0" Canvas.Left="0" Canvas.Top="0" />
+
+            <Canvas Name="canv_bottom_options" Height="86" Canvas.Left="538.995" Canvas.Top="995" Width="762.005">
+
+                <Canvas x:Name="canv_dynamic_icons" Width="358" Height="84" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Canvas.Left="199.987">
+
+                    <Image x:Name="img_dynamic_icons_bg" Height="84" Stretch="Fill" Source="pack://application:,,,/WallX.Resources;component/Resources/Rounded Rectangle 1.png" Width="359" Canvas.Top="4" Canvas.Left="-1"/>
+
+                    <Canvas Background="Transparent" x:Name="canv_pen" Height="47" Canvas.Left="11" Width="47" Canvas.Top="15" RenderTransformOrigin="0.5,0.5">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="menu_ink_toolbox"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_pen_bg" Visibility="Hidden"  Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Canvas.Top="0" Width="47"/>
+
+                        <Path x:Name="path_pen" Visibility="Visible" Stroke="White" Fill="Transparent" Opacity="0.502" Data="F1M4.209,15.819C4.015,15.815 3.909,15.83 3.909,15.83 3.909,15.83 3.15,16.873 3.15,16.873 3.15,16.873 2.981,19.895 2.981,19.895 2.974,20.014 3.044,20.119 3.155,20.161 3.707,20.365 4.276,20.636 4.966,21.137 5.656,21.638 6.089,22.097 6.452,22.56 6.524,22.654 6.647,22.689 6.758,22.646 6.758,22.646 9.582,21.556 9.582,21.556 9.582,21.556 10.342,20.51 10.342,20.51 10.342,20.51 10.039,18.821 7.825,17.209 6.162,15.999 4.791,15.828 4.209,15.819z M13.031,2.062C13.977,2.091 15.516,2.425 17.479,3.855 20.065,5.735 20.622,7.499 20.738,8.226 20.772,8.434 20.723,8.641 20.6,8.811 20.6,8.811 13.638,18.417 13.638,18.417 13.638,18.417 11.089,21.936 11.089,21.936 10.704,22.466 10.172,22.874 9.56,23.109 9.56,23.109 2.294,25.888 2.294,25.888 1.771,26.088 1.214,25.683 1.243,25.123 1.243,25.123 1.652,17.349 1.652,17.349 1.687,16.698 1.908,16.07 2.291,15.542 2.291,15.542 5.419,11.225 5.419,11.225 5.419,11.225 11.806,2.413 11.806,2.413 11.924,2.252 12.091,2.137 12.29,2.105 12.467,2.076 12.716,2.052 13.031,2.062z" Height="28" Canvas.Left="14" Canvas.Top="10" Width="22"/>
+
+                    </Canvas>
+
+                    <Canvas Background="Transparent"  x:Name="canv_eraser" Height="47" Canvas.Left="84" Width="47" Canvas.Top="15">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="menu_ink_toolbox"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_eraser_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" />
+
+                        <Path x:Name="path_eraser" Stroke="White"  Opacity="0.502" Fill="Transparent"  Data="F1M5.682,17.027C5.339,17.027 5.026,17.18 4.821,17.445 4.821,17.445 4.1,18.36 4.1,18.36 3.926,18.584 3.851,18.865 3.889,19.151 3.926,19.438 4.07,19.69 4.296,19.864 4.296,19.864 8.533,23.123 8.533,23.123 8.77,23.304 9.019,23.343 9.185,23.343 9.527,23.343 9.84,23.192 10.044,22.927 10.044,22.927 10.766,22.012 10.766,22.012 10.939,21.786 11.015,21.505 10.98,21.219 10.942,20.932 10.798,20.68 10.572,20.506 10.572,20.506 6.333,17.247 6.333,17.247 6.097,17.066 5.848,17.027 5.682,17.027z M15.897,1.707C16.58,1.618 17.298,1.788 17.884,2.239 17.884,2.239 22.123,5.498 22.123,5.498 23.295,6.4 23.515,8.094 22.613,9.265 22.613,9.265 11.322,23.911 11.322,23.911 10.419,25.081 8.722,25.303 7.55,24.401 7.55,24.401 3.312,21.142 3.312,21.142 2.14,20.24 1.92,18.545 2.822,17.375 2.822,17.375 14.111,2.729 14.111,2.729 14.562,2.144 15.213,1.796 15.897,1.707z" Height="27" Canvas.Left="11.167" Canvas.Top="10.997" Width="25"/>
+
+                    </Canvas>
+
+                    <Canvas Background="Transparent" x:Name="canv_highlighter" Height="47" Canvas.Top="15" Width="47" Canvas.Left="156">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="menu_ink_toolbox"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_highlighter_bg" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD"  Height="47" Width="47" Canvas.Top="1.334" Canvas.Left="0.667" Visibility="Hidden" />
+
+                        <Path x:Name="path_highlighter" Stroke="White" Fill="Transparent"  Data="F1M2.22,23.341C2.22,23.341 25.203,23.341 25.203,23.341 25.549,23.341 25.829,23.622 25.829,23.967 25.829,23.967 25.829,26.019 25.829,26.019 25.829,26.365 25.549,26.645 25.203,26.645 25.203,26.645 2.22,26.645 2.22,26.645 1.874,26.645 1.594,26.365 1.594,26.019 1.594,26.019 1.594,23.967 1.594,23.967 1.594,23.621 1.874,23.341 2.22,23.341z M22.442,2.075C22.655,2.079 22.866,2.163 23.027,2.325 23.027,2.325 27.613,6.91 27.613,6.91 27.936,7.233 27.948,7.753 27.639,8.09 27.639,8.09 15.329,21.526 15.329,21.526 15.325,21.531 15.32,21.535 15.315,21.54 15.304,21.551 15.293,21.562 15.282,21.572 15.273,21.581 15.264,21.59 15.254,21.597 15.242,21.608 15.23,21.617 15.217,21.627 15.208,21.635 15.198,21.642 15.188,21.648 15.175,21.658 15.16,21.667 15.146,21.676 15.137,21.681 15.128,21.687 15.118,21.692 15.103,21.701 15.087,21.71 15.07,21.717 15.061,21.721 15.053,21.726 15.044,21.73 15.027,21.737 15.009,21.744 14.992,21.751 14.983,21.753 14.974,21.757 14.965,21.76 14.948,21.766 14.929,21.771 14.911,21.775 14.901,21.778 14.893,21.78 14.883,21.782 14.866,21.786 14.848,21.789 14.831,21.792 14.82,21.793 14.809,21.796 14.798,21.797 14.782,21.798 14.766,21.799 14.75,21.8 14.739,21.801 14.729,21.802 14.719,21.802 14.713,21.802 14.706,21.802 14.7,21.802 14.697,21.802 14.694,21.802 14.69,21.802 14.69,21.802 10.753,21.759 10.753,21.759 10.753,21.759 9.591,22.92 9.591,22.92 9.427,23.085 9.208,23.17 8.988,23.17 8.844,23.17 8.699,23.134 8.568,23.06 8.568,23.06 6.718,22.014 6.718,22.014 6.485,21.883 6.328,21.651 6.292,21.386 6.256,21.122 6.345,20.856 6.534,20.668 6.534,20.668 8.153,19.048 8.153,19.048 8.153,19.048 8.164,15.265 8.164,15.265 8.164,15.262 8.165,15.259 8.165,15.256 8.165,15.254 8.164,15.252 8.164,15.249 8.165,15.238 8.166,15.228 8.167,15.217 8.168,15.201 8.169,15.185 8.17,15.169 8.171,15.158 8.174,15.147 8.175,15.137 8.178,15.119 8.181,15.101 8.185,15.083 8.187,15.075 8.189,15.066 8.191,15.058 8.196,15.038 8.201,15.019 8.208,15.001 8.21,14.993 8.213,14.986 8.215,14.978 8.223,14.959 8.229,14.94 8.238,14.922 8.241,14.913 8.245,14.906 8.249,14.898 8.257,14.881 8.266,14.864 8.275,14.847 8.28,14.838 8.286,14.83 8.291,14.821 8.3,14.806 8.309,14.792 8.319,14.777 8.326,14.768 8.333,14.758 8.34,14.75 8.35,14.736 8.36,14.723 8.371,14.712 8.379,14.702 8.388,14.693 8.396,14.684 8.406,14.672 8.417,14.661 8.429,14.651 8.433,14.647 8.436,14.643 8.44,14.639 8.44,14.639 21.846,2.3 21.846,2.3 22.014,2.145 22.229,2.07 22.442,2.075z" Height="28" Canvas.Left="9.834" Opacity="0.502" Canvas.Top="11.325" Width="29"/>
+
+                    </Canvas>
+
+                    <Canvas x:Name="canv_desktop_left_nav" Height="47.151" Canvas.Left="243.333" Canvas.Top="17.349" Width="114.666">
+
+                        <Canvas Background="Transparent" x:Name="canv_clear" Height="47" Width="47" Canvas.Left="-6.5" Canvas.Top="-3">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ClearInkBoard_MouseUp"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Path x:Name="path_clear_bg" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Visibility="Hidden"/>
+
+                            <Path x:Name="path_clear" Stroke="White" Fill="Transparent" Data="F1M1.55,21.686C1.55,21.686 16.445,21.686 16.445,21.686 16.445,21.686 16.836,31.697 16.836,31.697 16.836,31.697 1.159,31.697 1.159,31.697 1.159,31.697 1.55,21.686 1.55,21.686z M7.629,1.583C7.629,1.583 10.366,1.583 10.366,1.583 10.366,1.583 10.366,12.362 10.366,12.362 10.366,12.362 14.014,12.362 14.014,12.362 15.351,12.362 16.445,13.456 16.445,14.793 16.445,14.793 16.445,15.546 16.445,15.546 16.445,15.546 16.445,19.598 16.445,19.598 16.445,19.598 1.55,19.598 1.55,19.598 1.55,19.598 1.55,14.793 1.55,14.793 1.55,13.456 2.644,12.363 3.98,12.363 3.98,12.363 7.629,12.363 7.629,12.363 7.629,12.363 7.629,1.583 7.629,1.583z" Height="33" Canvas.Left="15.5" Opacity="0.502" Canvas.Top="7.651" Width="18"/>
+
+                        </Canvas>
+
+                        <Canvas x:Name="canv_screen_shot" Background="Transparent" Height="42" Canvas.Left="62.003" Canvas.Top="5.151" Width="49">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="Capture_MouseDown"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Path x:Name="path_pen_screen_shot_bg"  Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Top="-5" Canvas.Left="-4" Visibility="Hidden"/>
+
+                            <Path x:Name="path_pen_screen_shot" Stroke="White" Opacity="0.6" Fill="Transparent" Data="F1M25.897,29.398C26.739,29.398 27.417,30.088 27.417,30.939 27.417,31.791 26.739,32.481 25.897,32.481 25.06,32.481 24.379,31.791 24.379,30.939 24.379,30.088 25.06,29.398 25.897,29.398z M20.304,29.398C21.142,29.398 21.823,30.088 21.823,30.939 21.823,31.791 21.142,32.481 20.304,32.481 19.463,32.481 18.785,31.791 18.785,30.939 18.785,30.088 19.463,29.398 20.304,29.398z M14.709,29.398C15.547,29.398 16.227,30.088 16.227,30.939 16.227,31.791 15.547,32.481 14.709,32.481 13.87,32.481 13.189,31.791 13.189,30.939 13.189,30.088 13.87,29.398 14.709,29.398z M9.113,29.398C9.953,29.398 10.632,30.088 10.632,30.939 10.632,31.791 9.953,32.481 9.113,32.481 8.274,32.481 7.594,31.791 7.594,30.939 7.594,30.088 8.274,29.398 9.113,29.398z M3.519,29.398C3.918,29.398 4.311,29.562 4.593,29.85 4.877,30.137 5.038,30.533 5.038,30.939 5.038,31.345 4.877,31.742 4.593,32.029 4.311,32.316 3.918,32.481 3.519,32.481 3.118,32.481 2.727,32.316 2.443,32.029 2.162,31.742 2,31.345 2,30.939 2,30.533 2.162,30.137 2.443,29.85 2.727,29.562 3.118,29.398 3.519,29.398z M30.195,23.778C30.195,23.778 34.199,35.118 34.199,35.118 34.199,35.118 35.989,30.598 35.989,30.598 36.142,30.212 36.442,29.905 36.823,29.747 36.823,29.747 41.281,27.89 41.281,27.89 41.281,27.89 30.195,23.778 30.195,23.778z M3.519,23.718C4.357,23.718 5.038,24.408 5.038,25.26 5.038,26.111 4.357,26.8 3.519,26.8 2.678,26.8 2,26.111 2,25.26 2,24.408 2.678,23.718 3.519,23.718z M37.089,18.039C37.928,18.039 38.608,18.729 38.608,19.581 38.608,20.431 37.928,21.121 37.089,21.121 36.248,21.121 35.57,20.431 35.57,19.581 35.57,18.729 36.248,18.039 37.089,18.039z M3.519,18.039C4.357,18.039 5.038,18.729 5.038,19.581 5.038,20.431 4.357,21.121 3.519,21.121 2.678,21.121 2,20.431 2,19.581 2,18.729 2.678,18.039 3.519,18.039z M37.089,12.359C37.928,12.359 38.608,13.049 38.608,13.9 38.608,14.751 37.928,15.442 37.089,15.442 36.248,15.442 35.57,14.751 35.57,13.9 35.57,13.049 36.248,12.359 37.089,12.359z M3.519,12.359C4.357,12.359 5.038,13.049 5.038,13.9 5.038,14.751 4.357,15.442 3.519,15.442 2.678,15.442 2,14.751 2,13.9 2,13.049 2.678,12.359 3.519,12.359z M20.488,10.996C16.944,10.996 14.06,13.921 14.06,17.517 14.06,21.112 16.944,24.037 20.488,24.037 24.033,24.037 26.917,21.112 26.917,17.517 26.917,13.921 24.033,10.996 20.488,10.996z M11.371,10.996C10.393,10.996 9.601,11.8 9.601,12.79 9.601,13.782 10.393,14.585 11.371,14.585 12.348,14.585 13.14,13.782 13.14,12.79 13.14,11.8 12.348,10.996 11.371,10.996z M3.519,6.68C4.357,6.68 5.038,7.37 5.038,8.221 5.038,9.072 4.357,9.762 3.519,9.762 2.678,9.762 2,9.072 2,8.221 2,7.37 2.678,6.68 3.519,6.68z M37.089,6.68C37.928,6.68 38.608,7.371 38.608,8.221 38.608,9.072 37.928,9.762 37.089,9.762 36.248,9.762 35.57,9.072 35.57,8.221 35.57,7.371 36.248,6.68 37.089,6.68z M22.678,6.105C22.678,6.105 28.472,6.105 28.472,6.105 29.682,6.105 30.662,7.099 30.662,8.326 30.662,8.326 30.662,8.633 30.662,8.633 30.662,8.633 31.48,8.633 31.48,8.633 32.689,8.633 33.669,9.627 33.669,10.854 33.669,10.854 33.669,16.059 33.669,19.963L33.669,21.784 33.829,21.843C39.046,23.78 46.003,26.362 46.003,26.362 46.592,26.581 46.988,27.144 47,27.781 47.013,28.416 46.638,28.995 46.058,29.235 46.058,29.235 40.075,31.725 40.075,31.725 40.075,31.725 45.192,36.971 45.192,36.971 45.782,37.576 45.777,38.552 45.18,39.151 44.884,39.447 44.498,39.596 44.112,39.596 43.72,39.596 43.329,39.444 43.031,39.14 43.031,39.14 37.946,33.924 37.946,33.924 37.946,33.924 35.528,40.033 35.528,40.033 35.296,40.618 34.737,40.999 34.119,40.999 34.109,40.999 34.1,40.999 34.09,40.999 33.459,40.987 32.902,40.581 32.688,39.978 32.688,39.978 30.17,32.846 28.281,27.497L27.894,26.4 24.524,26.4C18.084,26.4 9.497,26.4 9.497,26.4 8.288,26.4 7.308,25.406 7.308,24.179 7.308,24.179 7.308,10.854 7.308,10.854 7.308,9.627 8.288,8.633 9.497,8.633 9.497,8.633 20.488,8.633 20.488,8.633 20.488,8.633 20.488,8.326 20.488,8.326 20.488,7.099 21.469,6.105 22.678,6.105z M37.089,1.001C37.489,1.001 37.881,1.165 38.163,1.451 38.446,1.738 38.608,2.135 38.608,2.543 38.608,2.947 38.445,3.345 38.163,3.632 37.881,3.919 37.489,4.083 37.089,4.083 36.689,4.083 36.297,3.919 36.015,3.632 35.732,3.343 35.57,2.947 35.57,2.543 35.57,2.135 35.732,1.739 36.015,1.451 36.297,1.165 36.688,1.001 37.089,1.001z M31.493,1.001C32.332,1.001 33.013,1.69 33.013,2.543 33.013,3.393 32.332,4.083 31.493,4.083 30.655,4.083 29.974,3.392 29.974,2.543 29.974,1.69 30.655,1.001 31.493,1.001z M25.897,1.001C26.739,1.001 27.417,1.69 27.417,2.543 27.417,3.393 26.739,4.083 25.897,4.083 25.06,4.083 24.379,3.392 24.379,2.543 24.379,1.69 25.06,1.001 25.897,1.001z M20.304,1.001C21.142,1.001 21.823,1.69 21.823,2.543 21.823,3.392 21.142,4.083 20.304,4.083 19.463,4.083 18.785,3.392 18.785,2.543 18.785,1.69 19.463,1.001 20.304,1.001z M14.709,1.001C15.547,1.001 16.227,1.69 16.227,2.543 16.227,3.392 15.547,4.083 14.709,4.083 13.87,4.083 13.189,3.392 13.189,2.543 13.189,1.69 13.87,1.001 14.709,1.001z M9.113,1.001C9.953,1.001 10.632,1.69 10.632,2.543 10.632,3.392 9.953,4.083 9.113,4.083 8.274,4.083 7.594,3.392 7.594,2.543 7.594,1.69 8.274,1.001 9.113,1.001z M3.519,1.001C3.918,1.001 4.311,1.165 4.593,1.451 4.877,1.739 5.038,2.135 5.038,2.543 5.038,2.947 4.877,3.343 4.593,3.632 4.309,3.919 3.918,4.083 3.519,4.083 3.118,4.083 2.727,3.919 2.443,3.632 2.162,3.345 2,2.947 2,2.543 2,2.135 2.162,1.738 2.443,1.451 2.727,1.165 3.118,1.001 3.519,1.001z" Height="42" Width="49"/>
+
+                        </Canvas>
+
+                    </Canvas>
+
+                </Canvas>
+
+                <Canvas x:Name="canv_pen_options" HorizontalAlignment="Left" Height="74" VerticalAlignment="Bottom" Width="200.987" Canvas.Top="12">
+
+                    <Canvas x:Name="canv_pen_colors" Height="74" Width="204" Canvas.Left="1.334">
+
+                        <Image x:Name="Rounded_Rectangle_1_copy_Copy" Height="74.166" Source="pack://application:,,,/WallX.Resources;component/Resources/Rounded Rectangle 1 copy.png" Width="204" Canvas.Top="5.336"/>
+
+                        <Canvas Height="47" Canvas.Top="16.252" Width="47" Canvas.Left="57">
+
+                            <Path x:Name="path_color_white_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47"/>
+
+                            <Path x:Name="path_color_white"  Data="F1M18.256,35.634C8.924,35.634 1.36,28.064 1.36,18.725 1.36,9.387 8.924,1.817 18.256,1.817 27.587,1.817 35.151,9.387 35.151,18.725 35.151,28.064 27.587,35.634 18.256,35.634z" Fill="#FFFFFFFF" Height="37" Canvas.Left="5.75" Canvas.Top="5.25" Width="37">
+
+                                <i:Interaction.Triggers>
+
+                                    <i:EventTrigger EventName="MouseUp">
+
+                                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_colors_MouseUp"/>
+
+                                    </i:EventTrigger>
+
+                                </i:Interaction.Triggers>
+
+                            </Path>
+
+                        </Canvas>
+
+                        <Canvas Height="47" Canvas.Left="9.25" Canvas.Top="15.752" Width="47">
+
+                            <Path x:Name="path_color_red_bg" Visibility="Hidden"  Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47"/>
+
+                            <Path x:Name="path_color_red" Data="F1M18.376,35.314C9.011,35.314 1.42,27.721 1.42,18.356 1.42,8.99 9.011,1.397 18.376,1.397 27.74,1.397 35.331,8.99 35.331,18.356 35.331,27.721 27.74,35.314 18.376,35.314z" Fill="#FFA23A3A" Height="37" Canvas.Left="5.5" Canvas.Top="5.75" Width="37">
+
+                                <i:Interaction.Triggers>
+
+                                    <i:EventTrigger EventName="MouseUp">
+
+                                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_colors_MouseUp"/>
+
+                                    </i:EventTrigger>
+
+                                </i:Interaction.Triggers>
+
+                            </Path>
+
+                        </Canvas>
+
+                        <Canvas Height="47" Canvas.Left="102.25" Width="47" Canvas.Top="15.002">
+
+                            <Path x:Name="path_color_green_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47"/>
+
+                            <Path x:Name="path_color_green"  Data="F1M18.656,35.993C9.258,35.993 1.64,28.378 1.64,18.984 1.64,9.591 9.258,1.976 18.656,1.976 28.054,1.976 35.672,9.591 35.672,18.984 35.672,28.378 28.054,35.993 18.656,35.993z" Fill="#FF95B971" Height="37" Canvas.Left="5.5" Canvas.Top="5.5" Width="37">
+
+                                <i:Interaction.Triggers>
+
+                                    <i:EventTrigger EventName="MouseUp">
+
+                                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_colors_MouseUp"/>
+
+                                    </i:EventTrigger>
+
+                                </i:Interaction.Triggers>
+
+                            </Path>
+
+                        </Canvas>
+
+                        <Canvas Height="47" Canvas.Left="147.75" Width="47" Canvas.Top="15.002">
+
+                            <Path x:Name="path_color_blue_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47"/>
+
+                            <Path x:Name="path_color_blue" Data="F1M18.097,35.671C8.665,35.671 1.02,28.033 1.02,18.612 1.02,9.191 8.665,1.554 18.097,1.554 27.528,1.554 35.173,9.191 35.173,18.612 35.173,28.033 27.528,35.671 18.097,35.671z" Fill="#FF47B1FD" Height="37" Canvas.Left="6" Canvas.Top="5.5" Width="37">
+
+                                <i:Interaction.Triggers>
+
+                                    <i:EventTrigger EventName="MouseUp">
+
+                                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_colors_MouseUp"/>
+
+                                    </i:EventTrigger>
+
+                                </i:Interaction.Triggers>
+
+                            </Path>
+
+                        </Canvas>
+
+                    </Canvas>
+
+                    <Canvas x:Name="canv_pen_strokes_options" Height="66" Width="204" Canvas.Left="559.754" Canvas.Top="8">
+
+                        <Image x:Name="Rounded_Rectangle_1_copy_2_Copy" Height="64" Canvas.Left="-5.667" Source="pack://application:,,,/WallX.Resources;component/Resources/Rounded Rectangle 1 copy 2.png" Width="209" Stretch="Fill" Canvas.Top="1.334"/>
+
+                        <Canvas  x:Name="path_size_1" Height="37.544" Tag="5" Canvas.Top="15.711" Width="35.666" Canvas.Left="15.669">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_stroke_sizes_MouseUp"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Path x:Name="path_size_1_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Top="-5" Canvas.Left="-6.75"/>
+
+                            <Path Data="F1M2,18C2,18 2,2 2,2 2,2 18,2 18,2 18,2 18,18 18,18 18,18 2,18 2,18z" Fill="#FFFFFFFF" Height="20" Width="19" Canvas.Top="9" Canvas.Left="7.998"/>
+
+                        </Canvas>
+
+                        <Canvas x:Name="path_size_2" Height="37.334" Tag="10" Canvas.Left="58.835" Canvas.Top="15.816" Width="37.334">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_stroke_sizes_MouseUp"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Path x:Name="path_size_2_bg" Visibility="Hidden"  Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Top="-5" Canvas.Left="-4.5"/>
+
+                            <Path  Data="F1M1.4,20.6C1.4,20.6 1.4,1.4 1.4,1.4 1.4,1.4 20.6,1.4 20.6,1.4 20.6,1.4 20.6,20.6 20.6,20.6 20.6,20.6 1.4,20.6 1.4,20.6z" Fill="#FFFFFFFF" Height="22" Width="22" Canvas.Top="7.665" Canvas.Left="7.332"/>
+
+                        </Canvas>
+
+                        <Canvas  x:Name="path_size_3" Height="38.484" Tag="20" Canvas.Left="103.502" Width="41.667" Canvas.Top="13.999">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_stroke_sizes_MouseUp"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Path x:Name="path_size_3_bg" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Left="-4" Canvas.Top="-4.5" Visibility="Hidden"/>
+
+                            <Path Data="F1M1.48,24.52C1.48,24.52 1.48,1.48 1.48,1.48 1.48,1.48 24.52,1.48 24.52,1.48 24.52,1.48 24.52,24.52 24.52,24.52 24.52,24.52 1.48,24.52 1.48,24.52z" Fill="#FFFFFFFF" Height="26" Width="26" Canvas.Top="6.834" Canvas.Left="6.666"/>
+
+                        </Canvas>
+
+                        <Canvas x:Name="path_size_4" Height="38.484" Tag="30" Canvas.Left="153.502" Width="44" Canvas.Top="13.999">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ink_stroke_sizes_MouseUp"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Path x:Name="path_size_4_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Left="-4.5" Canvas.Top="-4.5"/>
+
+                            <Path  Data="F1M1.776,28.824C1.776,28.824 1.776,1.176 1.776,1.176 1.776,1.176 29.424,1.176 29.424,1.176 29.424,1.176 29.424,28.824 29.424,28.824 29.424,28.824 1.776,28.824 1.776,28.824z" Fill="#FFFFFFFF" Height="30" Width="31" Canvas.Top="4.668" Canvas.Left="4.665"/>
+
+                        </Canvas>
+
+                    </Canvas>
+
+                </Canvas>
+
+                <Canvas x:Name="canv_eraser_options" Height="67" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="210" Canvas.Left="552.005" Canvas.Top="19" Visibility="Hidden">
+
+                    <Image x:Name="Rounded_Rectangle_1_copy_2_Copy1" Height="64" Source="pack://application:,,,/WallX.Resources;component/Resources/Rounded Rectangle 1 copy 2.png" Canvas.Top="2.001" Width="209"/>
+
+                    <Canvas  x:Name="path_eraser_1" Background="Transparent" Height="37.544" Tag="20" Width="35.666" Canvas.Left="16.499" Canvas.Top="16.891">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="eraser_sizes_MouseUp"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_eraser_1_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Top="-5" Canvas.Left="-6.75"/>
+
+                        <Path Data="F1M2,18C2,18 2,2 2,2 2,2 18,2 18,2 18,2 18,18 18,18 18,18 2,18 2,18z" Fill="#FFFFFFFF" Height="20" Width="19" Canvas.Top="9" Canvas.Left="7.998"/>
+
+                    </Canvas>
+
+                    <Canvas x:Name="path_eraser_2" Background="Transparent" Height="37.334" Tag="40" Width="37.334" Canvas.Left="59.665" Canvas.Top="16.996">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="eraser_sizes_MouseUp"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_eraser_2_bg" Visibility="Hidden"  Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Top="-5" Canvas.Left="-4.5"/>
+
+                        <Path  Data="F1M1.4,20.6C1.4,20.6 1.4,1.4 1.4,1.4 1.4,1.4 20.6,1.4 20.6,1.4 20.6,1.4 20.6,20.6 20.6,20.6 20.6,20.6 1.4,20.6 1.4,20.6z" Fill="#FFFFFFFF" Height="22" Width="22" Canvas.Top="7.665" Canvas.Left="7.332"/>
+
+                    </Canvas>
+
+                    <Canvas  x:Name="path_eraser_3" Background="Transparent" Height="38.484" Tag="60" Width="41.667" Canvas.Left="104.332" Canvas.Top="15.179">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="eraser_sizes_MouseUp"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_eraser_3_bg" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Left="-4" Canvas.Top="-4.5" Visibility="Hidden"/>
+
+                        <Path Data="F1M1.48,24.52C1.48,24.52 1.48,1.48 1.48,1.48 1.48,1.48 24.52,1.48 24.52,1.48 24.52,1.48 24.52,24.52 24.52,24.52 24.52,24.52 1.48,24.52 1.48,24.52z" Fill="#FFFFFFFF" Height="26" Width="26" Canvas.Top="6.834" Canvas.Left="6.666"/>
+
+                    </Canvas>
+
+                    <Canvas x:Name="path_eraser_4" Height="38.484" Tag="80" Width="44" Canvas.Left="154.332" Canvas.Top="15.179">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseUp">
+
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="eraser_sizes_MouseUp"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                        <Path x:Name="path_eraser_4_bg" Visibility="Hidden" Data="F1M24,2C36.15,2 46,11.85 46,24 46,36.15 36.15,46 24,46 11.85,46 2,36.15 2,24 2,11.85 11.85,2 24,2z" Fill="#FF47B1FD" Height="47" Width="47" Canvas.Left="-4.5" Canvas.Top="-4.5"/>
+
+                        <Path  Data="F1M1.776,28.824C1.776,28.824 1.776,1.176 1.776,1.176 1.776,1.176 29.424,1.176 29.424,1.176 29.424,1.176 29.424,28.824 29.424,28.824 29.424,28.824 1.776,28.824 1.776,28.824z" Fill="#FFFFFFFF" Height="30" Width="31" Canvas.Top="4.668" Canvas.Left="4.665"/>
+
+                    </Canvas>
+
+                </Canvas>
+
+            </Canvas>
+
+            <!--media_iconsMessageBox  UI-->
+
+            <Canvas x:Name="canv_Result_MessageBox" Visibility="Hidden" HorizontalAlignment="Left" Height="182" UseLayoutRounding="False" VerticalAlignment="Top" Width="473" Canvas.Left="723" RenderTransformOrigin="0.5,0.5">
+
+                <Canvas.RenderTransform>
+
+                    <TransformGroup>
+
+                        <ScaleTransform/>
+
+                        <SkewTransform/>
+
+                        <RotateTransform/>
+
+                        <TranslateTransform/>
+
+                    </TransformGroup>
+
+                </Canvas.RenderTransform>
+
+                <Image x:Name="shadow" Height="198" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/shadow.png" Canvas.Top="0" Width="480"/>
+
+                <Path x:Name="_base" Data="F1M6,2C6,2 465,2 465,2 467.761,2 470,4.239 470,7 470,7 470,175 470,175 470,177.761 467.761,180 465,180 465,180 6,180 6,180 3.239,180 1,177.761 1,175 1,175 1,7 1,7 1,4.239 3.239,2 6,2z" Fill="#FFF3F1F1" Height="181" Canvas.Left="1" Opacity="0.902" Canvas.Top="1" Width="471"/>
+
+                <Image x:Name="base_copy_3" Height="178" Canvas.Left="2" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 3.png" Canvas.Top="2" Width="469"/>
+
+                <Canvas x:Name="Alerts" Height="180"  Canvas.Left="0" Canvas.Top="1" Width="472">
+
+                    <TextBlock x:Name="txt_Confirm_Message_Title"    Foreground="#FF3B3B3B" FontWeight="Bold" FontSize="15.625" FontFamily="PT Sans" LineStackingStrategy="BlockLineHeight" Canvas.Left="90" LineHeight="15.625" TextAlignment="Left" TextWrapping="NoWrap" Text="{Binding ResultKey}" TextTrimming="CharacterEllipsis" Canvas.Top="24.875" Width="300"/>
+
+                    <TextBlock x:Name="txt_Confirm_Message_Info"    Foreground="#FF5B5B5B" FontSize="12.5" FontFamily="PT Sans Caption" Height="29" LineStackingStrategy="BlockLineHeight" Canvas.Left="20" LineHeight="12.5" TextAlignment="Center" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Text="{Binding ResultValue}" Canvas.Top="79.25" Width="432"/>
+
+                    <Path x:Name="seperator" Data="F1M4,2C4,2 4,51 4,51 4,51 2,51 2,51 2,51 4,2 4,2z" Fill="#FFD2D2D2" Height="52" Canvas.Left="66" Canvas.Top="0" Width="5"/>
+
+                    <Path x:Name="Shape_4e" Data="F1M2,3C2,3 2,2 2,2 2,2 471,2 471,2 471,2 471,3 471,3 471,3 2,3 2,3z" Fill="#FF3B3B3B" Height="4" Canvas.Left="0" Opacity="0.2" Canvas.Top="50" Width="472"/>
+
+                    <Path x:Name="Shape_3" Data="F1M13.999,16.52C13.154,16.52 12.469,17.204 12.469,18.049 12.469,18.894 13.154,19.578 13.999,19.578 14.845,19.578 15.53,18.894 15.53,18.049 15.53,17.204 14.845,16.52 13.999,16.52z M13.636,6.502C12.457,6.692 11.655,7.802 11.846,8.979 11.846,8.979 12.665,14.041 12.665,14.041 12.757,14.612 13.21,15.084 13.813,15.174 14.56,15.285 15.256,14.769 15.367,14.023 15.367,14.023 16.121,8.952 16.121,8.952 16.151,8.741 16.152,8.512 16.116,8.29 15.926,7.112 14.816,6.311 13.636,6.502z M13.999,2C14.963,2 15.848,2.484 16.366,3.296 16.366,3.296 25.558,17.686 25.558,17.686 26.11,18.55 26.146,19.645 25.654,20.544 25.16,21.442 24.217,22 23.191,22 23.191,22 4.808,22 4.808,22 3.782,22 2.839,21.442 2.346,20.544 1.853,19.645 1.889,18.55 2.441,17.686 2.441,17.686 11.633,3.296 11.633,3.296 12.151,2.484 13.036,2 13.999,2z" Fill="#FFCD5803" Height="24" Canvas.Left="21" Canvas.Top="17" Width="28"/>
+
+                    <Canvas x:Name="Buttons" Height="32" Canvas.Left="131" Canvas.Top="131" Width="211">
+
+                        <Canvas x:Name="canv_NoButton" Background="Transparent"    Height="31" Canvas.Left="110" Canvas.Top="1" Width="101">
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="Notification_ConfirmMessage_Tapped"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Canvas Height="32" Width="101" Visibility="Collapsed">
+
+                                <Image x:Name="base_copy_2f" Height="32" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 2.png" Canvas.Top="0" Width="101"/>
+
+                                <Image x:Name="base_copy_5f" Height="29" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 5.png" Canvas.Top="2" Width="99"/>
+
+                            </Canvas>
+
+                            <Canvas Height="31" Width="101" >
+
+                                <Image x:Name="base_copy" Height="31" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy.png" Width="101"/>
+
+                                <Image x:Name="base_copy_4" Height="26" Canvas.Left="2" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 4.png" Canvas.Top="3" Width="97"/>
+
+                            </Canvas>
+
+                            <TextBlock x:Name="Title_copy_2" Foreground="#FF3B3B3B" FontSize="12.5" FontFamily="PT Sans Caption" LineStackingStrategy="BlockLineHeight" Canvas.Left="38" LineHeight="12.5" TextAlignment="Left" TextWrapping="Wrap" Text="No" Canvas.Top="13.5"/>
+
+                        </Canvas>
+
+                        <Canvas x:Name="canv_YesButton" Background="Transparent" Height="32" Width="101" >
+
+                            <i:Interaction.Triggers>
+
+                                <i:EventTrigger EventName="MouseUp">
+
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="Notification_ConfirmMessage_Tapped"/>
+
+                                </i:EventTrigger>
+
+                            </i:Interaction.Triggers>
+
+                            <Canvas Height="32" Width="101" Visibility="Collapsed">
+
+                                <Image x:Name="base_copy_2" Height="32" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 2.png" Canvas.Top="0" Width="101"/>
+
+                                <Image x:Name="base_copy_5" Height="29" Canvas.Left="0" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 5.png" Canvas.Top="2" Width="99"/>
+
+                            </Canvas>
+
+                            <Canvas Height="31" Width="101" >
+
+                                <Image x:Name="base_copyf" Height="31" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy.png" Width="101"/>
+
+                                <Image x:Name="base_copy_4f" Height="26" Canvas.Left="2" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy 4.png" Canvas.Top="3" Width="97"/>
+
+                            </Canvas>
+
+                            <TextBlock x:Name="Title_copy" Foreground="#FF3B3B3B" FontSize="12.5" FontFamily="PT Sans Caption" LineStackingStrategy="BlockLineHeight" Canvas.Left="38" LineHeight="12.5" TextAlignment="Left" TextWrapping="Wrap" Text="Yes" Canvas.Top="13.5"/>
+
+                        </Canvas>
+
+                    </Canvas>
+
+                </Canvas>
+
+                <Canvas x:Name="canv_MessageBox_Close" Height="40" Background="Transparent" Canvas.Left="427" Canvas.Top="6" Width="40">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="ResultNotification_Close_mouseUp"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Canvas Height="24" Width="24" Canvas.Left="8" Canvas.Top="8">
+
+                        <Path x:Name="Ellipse_1" Data="F1M12.5,2C18.299,2 23,6.701 23,12.5 23,18.299 18.299,23 12.5,23 6.701,23 2,18.299 2,12.5 2,6.701 6.701,2 12.5,2z" Fill="#FF555757" Height="24" Canvas.Left="0" Opacity="0.502" Canvas.Top="0" Width="24"/>
+
+                        <Image x:Name="Ellipse_1_copy" Height="21" Canvas.Left="2" Source="pack://application:,,,/WallX.Resources;component/Resources/Ellipse 1 copy.png" Canvas.Top="2" Width="21"/>
+
+                        <Path x:Name="Shape_1g" Data="F1M2.222,1.388C2.434,1.388 2.648,1.47 2.81,1.632 2.81,1.632 4.994,3.817 4.994,3.817 4.994,3.817 7.179,1.632 7.179,1.632 7.504,1.307 8.03,1.307 8.355,1.632 8.68,1.957 8.68,2.484 8.355,2.809 8.355,2.809 6.171,4.994 6.171,4.994 6.171,4.994 8.355,7.179 8.355,7.179 8.68,7.504 8.68,8.031 8.355,8.356 8.193,8.518 7.98,8.599 7.767,8.599 7.554,8.599 7.341,8.518 7.179,8.356 7.179,8.356 4.994,6.17 4.994,6.17 4.994,6.17 2.81,8.356 2.81,8.356 2.648,8.518 2.435,8.599 2.222,8.599 2.009,8.599 1.796,8.518 1.634,8.356 1.309,8.031 1.309,7.504 1.634,7.179 1.634,7.179 3.818,4.994 3.818,4.994 3.818,4.994 1.634,2.809 1.634,2.809 1.309,2.484 1.309,1.957 1.634,1.632 1.796,1.47 2.009,1.388 2.222,1.388z" Fill="White" Height="10" Canvas.Left="7" Canvas.Top="8" Width="10"/>
+
+                    </Canvas>
+
+                </Canvas>
+
+            </Canvas>
+
+            <Canvas x:Name="canv_Notification_MessageBox" Canvas.Top="25" Visibility="Hidden" HorizontalAlignment="Left" Height="71" UseLayoutRounding="False" VerticalAlignment="Top" Width="471" Canvas.Left="723" RenderTransformOrigin="0.5,0.5">
+
+                <Canvas.RenderTransform>
+
+                    <TransformGroup>
+
+                        <ScaleTransform/>
+
+                        <SkewTransform/>
+
+                        <RotateTransform/>
+
+                        <TranslateTransform/>
+
+                    </TransformGroup>
+
+                </Canvas.RenderTransform>
+
+                <Image x:Name="shadow1" Height="71" Canvas.Left="1" Source="pack://application:,,,/WallX.Resources;component/Resources/shadow.png" Canvas.Top="0" Width="471"/>
+
+                <Path x:Name="_base1" Data="F1M6,2C6,2 465,2 465,2 467.761,2 470,4.239 470,7 470,7 470,65 470,65 470,67.761 467.761,70 465,70 465,70 6,70 6,70 3.239,70 1,67.761 1,65 1,65 1,7 1,7 1,4.239 3.239,2 6,2z" Fill="#FFF3F1F1" Height="71" Canvas.Left="0" Canvas.Top="0" Width="471"/>
+
+                <Image x:Name="base_copy1" Height="68" Canvas.Left="1" Source="pack://application:,,,/WallX.Resources;component/Resources/base copy.png" Canvas.Top="2" Width="469"/>
+
+                <Canvas x:Name="canv_media_iconsInfo" Height="66" Canvas.Left="7" Canvas.Top="2" Width="418" Visibility="Collapsed">
+
+                    <TextBlock x:Name="Title_Text"  LineStackingStrategy="BlockLineHeight" Canvas.Left="63" LineHeight="15.625" TextAlignment="Left" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Canvas.Top="23.875" Width="320" Height="13"><Run Foreground="#FF3B3B3B" FontWeight="Bold" FontSize="15.625" FontFamily="PT Sans" Text="Title of the Info here&#xA;"/><Run Foreground="#FF5B5B5B" FontSize="12.5" FontFamily="PT Sans Caption" Text="Single line information comes here..."/></TextBlock>
+
+                    <TextBlock x:Name="Text_Only" Foreground="#FF5B5B5B" FontSize="12.5" FontFamily="PT Sans Caption" LineStackingStrategy="BlockLineHeight" Canvas.Left="59" LineHeight="12.5" TextAlignment="Left" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Text="Information in single or two lines here..." Canvas.Top="36.5" Width="340" Height="13"/>
+
+                    <Path x:Name="seperator1" Data="F1M3,2C3,2 3,72 3,72 3,72 1,72 1,72 1,72 3,2 3,2z" Fill="#FFD2D2D2" Height="67" Canvas.Left="40" Canvas.Top="0" Width="5"/>
+
+                    <Path x:Name="Shape_22" Data="F1M11.061,10.941C12.531,10.941 12.777,12.67 12.042,15.332 12.042,15.332 10.109,22.609 10.109,22.609 9.765,23.896 9.913,24.34 10.255,24.34 10.697,24.34 12.144,23.806 13.564,22.696 13.564,22.696 14.398,23.806 14.398,23.806 10.917,27.265 7.118,28.598 5.647,28.598 4.177,28.598 3.099,27.711 4.128,23.807 4.128,23.807 5.816,16.884 5.816,16.884 6.11,15.776 6.159,15.332 5.816,15.332 5.374,15.332 3.465,16.098 2.336,16.852 2.336,16.852 1.602,15.655 1.602,15.655 5.179,12.683 9.296,10.941 11.061,10.941z M11.383,1.402C13.247,1.402 14.177,2.643 14.177,4.064 14.177,5.837 12.559,7.478 10.452,7.478 8.687,7.478 7.657,6.459 7.706,4.773 7.706,3.354 8.931,1.402 11.383,1.402z" Fill="#FF007EE5" Height="30" Canvas.Left="0" Canvas.Top="24" Width="16"/>
+
+                </Canvas>
+
+                <Canvas x:Name="canv_Alerts" Height="68" Canvas.Left="1" Canvas.Top="2" Width="419" Visibility="Visible">
+
+                    <Canvas x:Name="canv_Alert_Title"    Width="345" Canvas.Left="69" Height="50" Canvas.Top="15">
+
+                        <TextBlock x:Name="txt_AlertTitle" LineStackingStrategy="BlockLineHeight"  LineHeight="15.625" TextAlignment="Left" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="#FF3B3B3B" FontWeight="Bold" FontSize="15.625" FontFamily="PT Sans" Text="{Binding NotificationKey}" Canvas.Top="5"  Width="345" Height="20"></TextBlock>
+
+                        <TextBlock x:Name="txt_AlertInfo"  LineStackingStrategy="BlockLineHeight"  Foreground="#FF5B5B5B" FontSize="12.5" FontFamily="PT Sans Caption" Text="{Binding NotificationValue}" LineHeight="15.625"  TextAlignment="Left" TextWrapping="NoWrap"  Width="345" Height="26" Canvas.Top="23" TextTrimming="CharacterEllipsis"></TextBlock>
+
+                    </Canvas>
+
+                    <TextBlock x:Name="txt_Alert_Info_Only"    VerticalAlignment="Center" Foreground="#FF5B5B5B" FontSize="12.5" FontFamily="PT Sans Caption" LineStackingStrategy="BlockLineHeight" Canvas.Left="65" LineHeight="12.5" TextAlignment="Left" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Text="{Binding NotificationValueHeader}" Canvas.Top="22.5" Width="347" Height="33" />
+
+                    <Path x:Name="seperator2" Data="F1M3,2C3,2 3,72 3,72 3,72 1,72 1,72 1,72 3,2 3,2z" Fill="#FFD2D2D2" Height="68" Canvas.Left="46" Canvas.Top="0" Width="5"/>
+
+                    <Path x:Name="Shape_Alert" Visibility="Collapsed"    Data="F1M13.999,16.52C13.154,16.52 12.469,17.204 12.469,18.049 12.469,18.894 13.154,19.578 13.999,19.578 14.845,19.578 15.53,18.894 15.53,18.049 15.53,17.204 14.845,16.52 13.999,16.52z M13.636,6.502C12.457,6.692 11.655,7.802 11.846,8.979 11.846,8.979 12.665,14.041 12.665,14.041 12.757,14.612 13.21,15.084 13.813,15.174 14.56,15.285 15.256,14.769 15.367,14.023 15.367,14.023 16.121,8.952 16.121,8.952 16.151,8.741 16.152,8.512 16.116,8.29 15.926,7.112 14.816,6.311 13.636,6.502z M13.999,2C14.963,2 15.848,2.484 16.366,3.296 16.366,3.296 25.558,17.686 25.558,17.686 26.11,18.55 26.146,19.645 25.654,20.544 25.16,21.442 24.217,22 23.191,22 23.191,22 4.808,22 4.808,22 3.782,22 2.839,21.442 2.346,20.544 1.853,19.645 1.889,18.55 2.441,17.686 2.441,17.686 11.633,3.296 11.633,3.296 12.151,2.484 13.036,2 13.999,2z" Fill="#FFCD5803" Height="24" Canvas.Left="10" Canvas.Top="28" Width="28"/>
+
+                    <Path x:Name="Shape_Notification"    Data="F1M11.061,10.941C12.531,10.941 12.777,12.67 12.042,15.332 12.042,15.332 10.109,22.609 10.109,22.609 9.765,23.896 9.913,24.34 10.255,24.34 10.697,24.34 12.144,23.806 13.564,22.696 13.564,22.696 14.398,23.806 14.398,23.806 10.917,27.265 7.118,28.598 5.647,28.598 4.177,28.598 3.099,27.711 4.128,23.807 4.128,23.807 5.816,16.884 5.816,16.884 6.11,15.776 6.159,15.332 5.816,15.332 5.374,15.332 3.465,16.098 2.336,16.852 2.336,16.852 1.602,15.655 1.602,15.655 5.179,12.683 9.296,10.941 11.061,10.941z M11.383,1.402C13.247,1.402 14.177,2.643 14.177,4.064 14.177,5.837 12.559,7.478 10.452,7.478 8.687,7.478 7.657,6.459 7.706,4.773 7.706,3.354 8.931,1.402 11.383,1.402z" Fill="#FF007EE5" Height="30" Canvas.Left="15" Canvas.Top="24" Width="16"/>
+
+                </Canvas>
+
+                <Canvas x:Name="canv_Notification_Close"  Background="Transparent" Height="32" Canvas.Left="436" Canvas.Top="4" Width="31">
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseUp">
+
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="Notification_Close_mouseUp"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Canvas Height="23" Width="23" Canvas.Left="4" Canvas.Top="4">
+
+                        <Path x:Name="Ellipse_2" Data="F1M11.5,1C17.299,1 22,5.701 22,11.5 22,17.299 17.299,22 11.5,22 5.701,22 1,17.299 1,11.5 1,5.701 5.701,1 11.5,1z" Fill="#FF555757" Height="23" Canvas.Left="0" Opacity="0.502" Canvas.Top="0" Width="23"/>
+
+                        <Image x:Name="Ellipse_1_copy1" Height="21" Canvas.Left="1" Source="pack://application:,,,/WallX.Resources;component/Resources/Ellipse 1 copy.png" Canvas.Top="1" Width="21"/>
+
+                        <Path x:Name="Shape_6e" Data="F1M2.222,1.388C2.434,1.388 2.648,1.47 2.81,1.632 2.81,1.632 4.994,3.817 4.994,3.817 4.994,3.817 7.179,1.632 7.179,1.632 7.504,1.307 8.03,1.307 8.355,1.632 8.68,1.957 8.68,2.484 8.355,2.809 8.355,2.809 6.171,4.994 6.171,4.994 6.171,4.994 8.355,7.179 8.355,7.179 8.68,7.504 8.68,8.031 8.355,8.356 8.193,8.518 7.98,8.599 7.767,8.599 7.554,8.599 7.341,8.518 7.179,8.356 7.179,8.356 4.994,6.17 4.994,6.17 4.994,6.17 2.81,8.356 2.81,8.356 2.648,8.518 2.435,8.599 2.222,8.599 2.009,8.599 1.796,8.518 1.634,8.356 1.309,8.031 1.309,7.504 1.634,7.179 1.634,7.179 3.818,4.994 3.818,4.994 3.818,4.994 1.634,2.809 1.634,2.809 1.309,2.484 1.309,1.957 1.634,1.632 1.796,1.47 2.009,1.388 2.222,1.388z" Fill="White" Height="10" Canvas.Left="6" Canvas.Top="7" Width="10"/>
+
+                    </Canvas>
+
+                </Canvas>
+
+            </Canvas>
+
+            <!--media_iconsMessageBox UI End-->
+
+        </Canvas>
+
+    </Viewbox>
+
+</Window>

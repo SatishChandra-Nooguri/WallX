@@ -1,0 +1,29 @@
+﻿<Window x:Class="WallX.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:NxgUI="clr-namespace:NextGen.Controls.UI;assembly=NextGen.Controls.UI"
+        Icon="pack://application:,,,/Logo.ico"
+        x:Name="mainWindow" WindowState="Maximized" WindowStyle="None"
+        Loaded="Application_Loaded" Closing="Application_Closing">
+
+    <Viewbox Height="{Binding Height, ElementName=mainWindow}" Width="{Binding Width, ElementName=mainWindow}" Stretch="Fill">
+
+        <Canvas x:Name="canv_main_panel" Height="1080" Width="1920" Background="Transparent" ManipulationBoundaryFeedback="ManipulationBoundaryEvent">
+
+            <Image Height="1080" Width="1920" Stretch="Fill" Source="pack://application:,,,/WallX.Resources;component/Resources/1.jpg" />
+
+            <ContentControl x:Name="homepage_control" Height="1080" Width="1920"/>
+
+            <NxgUI:YesOrNoBox x:Name="YesOrNoBox" Canvas.Left="723" />
+
+            <NxgUI:NotificationBox x:Name="NotificationBox" Canvas.Left="723" Canvas.Top="25"/>
+
+            <NxgUI:InformationBox x:Name="InformationBox" Canvas.Left="723" Canvas.Top="25"/>
+
+        </Canvas>
+
+    </Viewbox>
+
+</Window>

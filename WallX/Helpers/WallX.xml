@@ -1,0 +1,23 @@
+﻿<Config>
+  <Resources>Resources</Resources>
+  <LocationName>Threshold campus</LocationName>
+  <CityName>Hyderabad</CityName>
+  <CountryName>India</CountryName>
+  <AutoSaveTimeFrequency>2</AutoSaveTimeFrequency>
+  <DayStartTime>12:30 AM</DayStartTime>
+  <DayEndTime>11:30 PM</DayEndTime>
+  <!-- Avialble Colors : LightBlue, Blue, Green & Black -->
+  <DefaultBoardBG>LightBlue</DefaultBoardBG>
+  <AppVersion>1.0</AppVersion>
+  <!-- Local (or) Server -->
+  <AppLocation>Local</AppLocation>
+  <ExtraFeatures>true</ExtraFeatures>
+  <ZoomToken>W9Hr30fUT_yw4aSWJraROw</ZoomToken>
+  <ZoomUserId>bharath.b@nextgenmultitouch.com</ZoomUserId>
+  <ZoomUserPwd>Threshold@117</ZoomUserPwd>
+  <!-- With Video (or) Without Video -->
+  <ZoomStartType>video</ZoomStartType>
+  <ZoomAPI>6C5xkKSoQpiZZEp0uRCr8A</ZoomAPI>
+  <ZoomSecret>WMZs9nksSySFiJpill69t3gvvAGMV8bg9Gm4</ZoomSecret>
+  <ZoomToken>W9Hr30fUT_yw4aSWJraROw</ZoomToken>
+</Config>
