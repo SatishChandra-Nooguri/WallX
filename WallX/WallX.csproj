@@ -36,6 +36,9 @@
   <PropertyGroup>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="aspose.pdf">
       <HintPath>AppData\NextGen Support Lib\aspose.pdf.dll</HintPath>
@@ -244,6 +247,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -254,11 +258,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="AppData\NextGen Support Lib\Google Voice API\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="AppData\Excel.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.Animations.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.DragAndDrop.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.FfmpegRecorder.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.Gestures.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.GoogleAPIVoice.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.InkRecognizer.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.InkTools.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.Licence.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.Services.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.SQLite.dll" />
+    <Content Include="AppData\NextGen Lib\NextGen.Controls.Thumbnail.dll" />
     <Content Include="AppData\NextGen Lib\NextGen.Controls.UI.dll" />
+    <Content Include="AppData\NextGen Support Lib\aspose.pdf.dll" />
+    <Content Include="AppData\NextGen Support Lib\ffmpeg.exe" />
+    <Content Include="AppData\NextGen Support Lib\GalaSoft.MvvmLight.dll" />
+    <Content Include="AppData\NextGen Support Lib\Google Voice API\NAudio.dll" />
+    <Content Include="AppData\NextGen Support Lib\Google Voice API\Newtonsoft.Json.dll" />
+    <Content Include="AppData\NextGen Support Lib\Microsoft.Expression.Interactions.dll" />
+    <Content Include="AppData\NextGen Support Lib\Microsoft.WindowsAPICodePack.dll" />
+    <Content Include="AppData\NextGen Support Lib\Microsoft.WindowsAPICodePack.Shell.dll" />
+    <Content Include="AppData\NextGen Support Lib\System.Windows.Interactivity.dll" />
+    <Content Include="AppData\RethinkDb.Driver.dll" />
+    <Content Include="AppData\WPFToolkit.Extended.dll" />
     <Resource Include="Helpers\WallX.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

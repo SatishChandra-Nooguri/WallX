@@ -2862,7 +2862,7 @@ namespace WallX.ViewModel
                         //_boardview.UndoRedo.Children.OfType<Canvas>().ToList().ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
                         //_boardview.canv_saveNclear.Children.OfType<Canvas>().ToList().ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
                         //_boardview.stackpanel_tool_menu.Children.OfType<Canvas>().Where(s => !(new List<string>() { "canv_menu_browser_" }.Contains(s.Name))).ToList().ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
-                        (new List<Canvas>() { _boardview.canv_marker, _boardview.canv_eraser, _boardview.canv_highlighter, _boardview.canv_hand, _boardview.canv_eraser_stroke }).ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
+                        (new List<Canvas>() { _boardview.canv_marker, _boardview.canv_eraser, _boardview.canv_highlighter, _boardview.canv_hand, _boardview.canv_eraser_stroke,_boardview.canv_selection_tool }).ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
 
                         FillColortoSelectedUtility(menuitem.Children[0] as ShapePath, true, true);
 
@@ -2996,8 +2996,13 @@ namespace WallX.ViewModel
                         {
 
                             StrokeCollection strokes = _boardview.inkCanvas.GetSelectedStrokes().Clone();
+                            Rect bounds = strokes.GetBounds();
+                            Point p = new Point(bounds.Left, bounds.Top);
+                            Matrix mat = new Matrix();
+                            mat.Translate(10, 10);
+                            strokes.Transform(mat, false);
+
                             _boardview.inkCanvas.Strokes.Add(strokes);
-                            
                         }
                         break;
                 }
@@ -4137,6 +4142,11 @@ namespace WallX.ViewModel
 
                 _boardview.inkCanvas.EditingMode = InkCanvasEditingMode.None;
                 _boardview.inkCanvas.EditingMode = InkCanvasEditingMode.Select;
+
+                _boardview.canv_strokes.Visibility = _boardview.canv_colors.Visibility = Visibility.Collapsed;
+                (new List<Canvas>() { _boardview.canv_marker, _boardview.canv_eraser, _boardview.canv_highlighter, _boardview.canv_hand, _boardview.canv_eraser_stroke }).ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
+                FillColortoSelectedUtility((sender as Canvas).Children[0] as ShapePath, true, true);
+
             }
             catch (Exception ex)
             {
