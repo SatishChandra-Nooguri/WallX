@@ -124,7 +124,7 @@ namespace WallX.ViewModel
 
                 _boardview.canv_Gestures.Visibility = _boardview.canv_Zoom.Visibility = Constants.ExtraFeatures ? Visibility.Visible : Visibility.Collapsed; // pending (aparanj)
 
-                NxgUtilities.CollapseElements(new List<FrameworkElement> { _boardview.canv_addmedia, _boardview.canv_mom, _boardview.canv_voicenotes, _boardview.canv_menu_browser_, _boardview.canv_desktop, _boardview.canv_library_item, _boardview.canv_email, _boardview.canv_screen_recording, _boardview.canv_sticky, _boardview.canv_video_call_zoomus, _boardview.canv_WallX_Settings_Menu, _boardview.canv_magnifier_slider });
+                NxgUtilities.CollapseElements(new List<FrameworkElement> { _boardview.canv_addmedia, _boardview.canv_mom, _boardview.canv_voicenotes, _boardview.canv_menu_browser_, _boardview.canv_desktop, _boardview.canv_library_item, _boardview.canv_email, _boardview.canv_screen_recording, _boardview.canv_sticky, _boardview.canv_video_call_zoomus, _boardview.canv_WallX_Settings_Menu, _boardview.canv_magnifier_slider, _boardview.canv_duplicate });
 
                 foreach (string option in NextGen.Controls.Licence.RegisterLicence.MenuOptions)
                 {
@@ -139,15 +139,15 @@ namespace WallX.ViewModel
                         //case "Audio Recording":
                         //    _boardview.canv_voicenotes.Visibility = Visibility.Visible;
                         //    break;
-                        //case "Browser":
-                        //    _boardview.canv_menu_browser_.Visibility = Visibility.Visible;
-                        //    break;
-                        //case "Desktop Mode":
-                        //    _boardview.canv_desktop.Visibility = Visibility.Visible;
-                        //    break;
-                        //case "Library":
-                        //    _boardview.canv_library_item.Visibility = Visibility.Visible;
-                        //    break;
+                        case "Browser":
+                            _boardview.canv_menu_browser_.Visibility = Visibility.Visible;
+                            break;
+                        case "Desktop Mode":
+                            _boardview.canv_desktop.Visibility = Visibility.Visible;
+                            break;
+                        case "Library":
+                            _boardview.canv_library_item.Visibility = Visibility.Visible;
+                            break;
                         //case "Pdf Generation":
                         //    _boardview.canv_email.Visibility = Visibility.Visible;
                         //    break;
@@ -157,9 +157,9 @@ namespace WallX.ViewModel
                         case "Sticky Note":
                             _boardview.canv_sticky.Visibility = Visibility.Visible;
                             break;
-                            //case "Zoom":
-                            //    _boardview.canv_video_call_zoomus.Visibility = Visibility.Visible;
-                            //    break;
+                        case "Zoom":
+                            _boardview.canv_video_call_zoomus.Visibility = Visibility.Visible;
+                            break;
                     }
                 }
             }
@@ -2862,7 +2862,7 @@ namespace WallX.ViewModel
                         //_boardview.UndoRedo.Children.OfType<Canvas>().ToList().ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
                         //_boardview.canv_saveNclear.Children.OfType<Canvas>().ToList().ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
                         //_boardview.stackpanel_tool_menu.Children.OfType<Canvas>().Where(s => !(new List<string>() { "canv_menu_browser_" }.Contains(s.Name))).ToList().ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
-                        (new List<Canvas>() { _boardview.canv_marker, _boardview.canv_eraser, _boardview.canv_highlighter, _boardview.canv_hand, _boardview.canv_eraser_stroke,_boardview.canv_selection_tool }).ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
+                        (new List<Canvas>() { _boardview.canv_marker, _boardview.canv_eraser, _boardview.canv_highlighter, _boardview.canv_hand, _boardview.canv_eraser_stroke, _boardview.canv_selection_tool }).ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
 
                         FillColortoSelectedUtility(menuitem.Children[0] as ShapePath, true, true);
 
@@ -2898,7 +2898,7 @@ namespace WallX.ViewModel
                             _boardview.canv_strokes.Visibility = Visibility.Collapsed;
                         }
                         //_boardview.canv_strokes.SetValue(Canvas.TopProperty, (double)39);
-                        _boardview.canv_strokes.Margin = new Thickness(-215, -225, 0, 0);
+                        _boardview.canv_strokes.Margin = new Thickness(-215, -319, 0, 0);
 
                         _inkToolName = InkToolName.Marker;
                         break;
@@ -2912,7 +2912,7 @@ namespace WallX.ViewModel
 
                         _boardview.canv_colors.Visibility = Visibility.Collapsed;
                         //_boardview.canv_strokes.SetValue(Canvas.TopProperty, (double)39);
-                        _boardview.canv_strokes.Margin = new Thickness(-215, -225, 0, 0);
+                        _boardview.canv_strokes.Margin = new Thickness(-215, -319, 0, 0);
                         _inkToolName = InkToolName.Eraser;
                         break;
                     case "canv_highlighter":
@@ -2925,7 +2925,7 @@ namespace WallX.ViewModel
 
                         _boardview.canv_colors.Visibility = Visibility.Collapsed;
                         //_boardview.canv_strokes.SetValue(Canvas.TopProperty, (double)90);
-                        _boardview.canv_strokes.Margin = new Thickness(-215, -140, 0, 0);
+                        _boardview.canv_strokes.Margin = new Thickness(-215, -230, 0, 0);
                         _inkToolName = InkToolName.Highlighter;
                         break;
                     case "canv_hand":
@@ -2987,8 +2987,18 @@ namespace WallX.ViewModel
                             int selectedElementsCount = _boardview.inkCanvas.GetSelectedElements().Count;
                             for (int i = 0; i < selectedElementsCount; i++)
                             {
-                                Border selectedElement = _boardview.inkCanvas.GetSelectedElements()[i] as Border;
-                                AddChildToBoard(_imageAnnotaionsList.Where(s => Convert.ToInt32(selectedElement.Tag) == s.AnnotationId).ToList(), true);
+                                if (_boardview.inkCanvas.GetSelectedElements()[i] is Border)
+                                {
+                                    Border selectedElement = _boardview.inkCanvas.GetSelectedElements()[i] as Border;
+                                    if (selectedElement != null)
+                                        AddChildToBoard(_imageAnnotaionsList.Where(s => Convert.ToInt32(selectedElement.Tag) == s.AnnotationId).ToList(), true);
+                                }
+                                else if(_boardview.inkCanvas.GetSelectedElements()[i] is RichTextBox)
+                                {
+                                    string input = new TextRange((_boardview.inkCanvas.GetSelectedElements()[i] as RichTextBox).Document.ContentStart, (_boardview.inkCanvas.GetSelectedElements()[i] as RichTextBox).Document.ContentEnd).Text;
+
+                                   AddRichTextBox(input);
+                                }
                             }
                         }
 
@@ -3641,7 +3651,7 @@ namespace WallX.ViewModel
                                 _imageAnnotaionsList = Service.GetModuleDataList<ImageAnnotations>(_currentClass, board.AnnotationId);
                             Panel.SetZIndex(border, 99999);
                             _boardview.inkCanvas.Children.Add(border);
-                            
+
                         }
                         else
                         {
@@ -4039,21 +4049,29 @@ namespace WallX.ViewModel
                     int selectedElementsCount = _boardview.inkCanvas.GetSelectedElements().Count;
                     for (int i = 0; i < selectedElementsCount; i++)
                     {
-                        Border selectedElement = _boardview.inkCanvas.GetSelectedElements()[0] as Border;
-                        LibraryThumbs manipulateItem = _mediaAnnotaionsList.FirstOrDefault(k => !string.IsNullOrWhiteSpace(k.AttachmentUid) && Path.GetFileNameWithoutExtension(k.AttachmentUid).Contains(Path.GetFileNameWithoutExtension((selectedElement).Uid)));
-                        if (manipulateItem != null)
+                        if (_boardview.inkCanvas.GetSelectedElements()[0] is Border)
                         {
-                            ImageAnnotations child = _imageAnnotaionsList.FirstOrDefault(s => Convert.ToInt32((selectedElement).Tag) == s.AnnotationId);
-                            if (child != null)
+                            Border selectedElement = _boardview.inkCanvas.GetSelectedElements()[0] as Border;
+                            LibraryThumbs manipulateItem = _mediaAnnotaionsList.FirstOrDefault(k => !string.IsNullOrWhiteSpace(k.AttachmentUid) && Path.GetFileNameWithoutExtension(k.AttachmentUid).Contains(Path.GetFileNameWithoutExtension((selectedElement).Uid)));
+                            if (manipulateItem != null)
                             {
-                                Service.InsertOrUpdateDataToDB(child, CrudActions.Delete, child.AnnotationId);
+                                ImageAnnotations child = _imageAnnotaionsList.FirstOrDefault(s => Convert.ToInt32((selectedElement).Tag) == s.AnnotationId);
+                                if (child != null)
+                                {
+                                    Service.InsertOrUpdateDataToDB(child, CrudActions.Delete, child.AnnotationId);
+                                }
                             }
+                            selectedChildTag = Convert.ToInt32((selectedElement).Tag);
+                            if (_rethinkColService != null)
+                                _rethinkColService.AddorUpdateStrokeDataintoDB("DeleteBoardChild", selectedChildTag.ToString(), null, _nextPageIndex);
+                            _boardview.inkCanvas.Children.Remove(selectedElement);
+                            _selectedBoardChildren = null;
                         }
-                        selectedChildTag = Convert.ToInt32((selectedElement).Tag);
-                        if (_rethinkColService != null)
-                            _rethinkColService.AddorUpdateStrokeDataintoDB("DeleteBoardChild", selectedChildTag.ToString(), null, _nextPageIndex);
-                        _boardview.inkCanvas.Children.Remove(selectedElement);
-                        _selectedBoardChildren = null;
+                        else if (_boardview.inkCanvas.GetSelectedElements()[0] is RichTextBox)
+                        {
+                            RichTextBox selectedElement = _boardview.inkCanvas.GetSelectedElements()[0] as RichTextBox;
+                            _boardview.inkCanvas.Children.Remove(selectedElement);
+                        }
                     }
                 }
 
@@ -4145,8 +4163,8 @@ namespace WallX.ViewModel
 
                 _boardview.canv_strokes.Visibility = _boardview.canv_colors.Visibility = Visibility.Collapsed;
                 (new List<Canvas>() { _boardview.canv_marker, _boardview.canv_eraser, _boardview.canv_highlighter, _boardview.canv_hand, _boardview.canv_eraser_stroke }).ForEach(k => FillColortoSelectedUtility(k.Children[0] as ShapePath, false, true));
-                FillColortoSelectedUtility((sender as Canvas).Children[0] as ShapePath, true, true);
 
+                FillColortoSelectedUtility((sender as Canvas).Children[0] as ShapePath, true, true);
             }
             catch (Exception ex)
             {
@@ -4165,8 +4183,12 @@ namespace WallX.ViewModel
             if (!string.IsNullOrWhiteSpace(input))
                 inkCanvasTextBox.AppendText(input);
 
+            inkCanvasTextBox.MinWidth = 500;
+            inkCanvasTextBox.MinHeight = 150;
+
             inkCanvasTextBox.MaxWidth = 500;
             inkCanvasTextBox.MaxHeight = 200;
+
             inkCanvasTextBox.BorderThickness = new Thickness(5);
             inkCanvasTextBox.BorderBrush = Brushes.Black;
             inkCanvasTextBox.FontSize = 30;
@@ -4249,6 +4271,7 @@ namespace WallX.ViewModel
                 ToolShowMenuComponent(_boardview.canv_marker);
                 _boardview.MyMagnifier.Visibility = Visibility.Collapsed;
                 _boardview.canv_magnifier_slider.Visibility = Visibility.Collapsed;
+                (_boardview.canv_magnifier.Children[0] as ShapePath).Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF313131"));
 
                 _isGestureEnabled = _currentGestureStatus;
                 if (_isGestureEnabled)
@@ -4282,6 +4305,8 @@ namespace WallX.ViewModel
                     _boardview.inkCanvas.EditingMode = InkCanvasEditingMode.None;
                     _boardview.MyMagnifier.Visibility = Visibility.Visible;
                     _boardview.canv_magnifier_slider.Visibility = Visibility.Visible;
+
+                    (_boardview.canv_magnifier.Children[0] as ShapePath).Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFA13939"));
 
                     _currentGestureStatus = _isGestureEnabled;
 
@@ -7349,7 +7374,7 @@ namespace WallX.ViewModel
 
         #endregion Extra features
 
-        #region
+        #region password req
 
         private bool _isPasswordRequired = false;
 
@@ -7373,6 +7398,99 @@ namespace WallX.ViewModel
                 App.InsertException(ex);
             }
         }
+        #endregion
+
+        #region SpotLight
+
+        public void canv_spot_light_tool_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (_boardview.canv_spotLight.Visibility == Visibility.Collapsed)
+                {
+                    _boardview.canv_spotLight.Visibility = Visibility.Visible;
+                   ( _boardview.canv_spot_light_tool.Children[0] as TextBlock).Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFA13939"));
+                }
+                else if (_boardview.canv_spotLight.Visibility == Visibility.Visible)
+                {
+                    _boardview.canv_spotLight.Visibility = Visibility.Collapsed;
+                    (_boardview.canv_spot_light_tool.Children[0] as TextBlock).Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF313131"));
+
+                }
+            }
+            catch (Exception ex)
+            {
+                App.InsertException(ex);
+            }
+        }
+
+        public void OpacityMask_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+                e.ManipulationContainer = _boardview.canv_spotLight;
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                App.InsertException(ex);
+            }
+        }
+
+        double spotLightOffsetXLimit = -3233, spotLightOffsetYLimit = -1465;
+
+        public void OpacityMask_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            try
+            {
+                var element = e.OriginalSource as UIElement;
+
+                var transformation = element.RenderTransform as MatrixTransform;
+                var matrix = transformation == null ? Matrix.Identity : transformation.Matrix;
+
+                if (matrix.OffsetX >= spotLightOffsetXLimit && matrix.OffsetX <= 0 && matrix.OffsetY >= spotLightOffsetYLimit && matrix.OffsetY <= 0)
+                {
+                    matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
+                }
+                else if (matrix.OffsetX > 0)
+                {
+                    e.Cancel();
+                    matrix.OffsetX = 0;
+                    if (matrix.OffsetY > 0)
+                        matrix.OffsetY = 0;
+                }
+                else if (matrix.OffsetX < spotLightOffsetXLimit)
+                {
+                    e.Cancel();
+                    matrix.OffsetX = spotLightOffsetXLimit;
+                    if (matrix.OffsetY < spotLightOffsetYLimit)
+                        matrix.OffsetY = spotLightOffsetYLimit;
+                }
+                else if (matrix.OffsetY > 0)
+                {
+                    e.Cancel();
+                    matrix.OffsetY = 0;
+                    if (matrix.OffsetX > 0)
+                        matrix.OffsetX = 0;
+                }
+                else if (matrix.OffsetY < spotLightOffsetYLimit)
+                {
+                    e.Cancel();
+                    matrix.OffsetY = spotLightOffsetYLimit;
+                    if (matrix.OffsetX < spotLightOffsetXLimit)
+                        matrix.OffsetX = spotLightOffsetXLimit;
+                }
+
+                element.RenderTransform = new MatrixTransform(matrix);
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                App.InsertException(ex);
+            }
+        }
+
         #endregion
     }
 }

@@ -1081,7 +1081,7 @@
         </Grid>
 
         <Loader:Loader x:Name="WallXLoader" Canvas.Left="1600" Canvas.Top="800" Visibility="Collapsed"/>
-
+  
     </Canvas>
 
 </UserControl>

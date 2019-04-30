@@ -96,10 +96,11 @@ namespace WallX
 
             _regLicence = new RegisterLicence();
             InstanceStatus instanceStatus = new InstanceStatus();
-            //instanceStatus.IsSingleInstance(_regLicence, new MainWindow(), Constants.InternalLogoPath, "MeetingWall", "Version 1.0");
+            //instanceStatus.IsSingleInstance(_regLicence, new MainWindow(), Constants.InternalLogoPath, "WallX", "Version 1.0");
 
-            //instanceStatus.IsSingleInstance(new MainWindow(), Constants.InternalLogoPath, "MeetingWall", "Version 1.0");
+            //instanceStatus.IsSingleInstance(new MainWindow(), Constants.InternalLogoPath, "WallX", "Version 1.0");
             _regLicence.IsLicenceValid(new MainWindow(), Constants.InternalLogoPath, "WallX", "Version 1.0");
+            //new MainWindow().Show();
         }
 
         /// <summary>
@@ -168,7 +169,5 @@ namespace WallX
         }
 
         #endregion
-
-
     }
 }
